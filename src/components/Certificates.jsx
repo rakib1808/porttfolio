@@ -1,7 +1,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { ExternalLink } from 'lucide-react'
-import certificateImg from '../assets/certificate.png'
+import certificateImg from '../assets/Certificate.png'
 
 const ease = [0.22, 1, 0.36, 1]
 
