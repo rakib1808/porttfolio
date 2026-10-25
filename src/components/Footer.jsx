@@ -1,15 +1,19 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa'
+import { FaGithub, FaInstagram, FaFacebook } from 'react-icons/fa'
 import { Heart } from 'lucide-react'
 
 const ease = [0.22, 1, 0.36, 1]
 
 const Footer = () => {
     const socialLinks = [
-        { label: 'GitHub', link: '#', icon: FaGithub },
-        { label: 'LinkedIn', link: '#', icon: FaLinkedin },
-        { label: 'Twitter', link: '#', icon: FaTwitter },
+        { label: 'GitHub', link: 'https://github.com/rakib1808', icon: FaGithub },
+        
+        { label: 'Facebook', link: 'https://www.facebook.com/rakib1808', icon: FaFacebook, color: 'hover:text-red-600 hover:border-red-500/40' },
+
+        { label: 'Instagram', link: '#', icon: FaInstagram, color: 'hover:text-red-600 hover:border-red-500/40' }
+
+
     ]
 
     return (

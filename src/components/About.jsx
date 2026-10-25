@@ -1,13 +1,18 @@
 import { ArrowRight } from 'lucide-react';
-import { FaInstagram, FaTiktok, FaGithub, FaYoutube } from 'react-icons/fa';
+import { FaFacebook, FaGithub, FaDiscord, FaLinkedin, FaInstagram } from 'react-icons/fa';
 import about from '../assets/about.png';
 
 const About = () => {
     const socialLinks = [
-        { label: 'Instagram', link: '#', icon: FaInstagram, color: 'hover:text-red-600 hover:border-red-500/40' },
-        { label: 'TikTok', link: '#', icon: FaTiktok, color: 'hover:text-red-600 hover:border-red-500/40' },
-        { label: 'GitHub', link: '#', icon: FaGithub, color: 'hover:text-red-600 hover:border-red-500/40' },
-        { label: 'YouTube', link: '#', icon: FaYoutube, color: 'hover:text-red-600 hover:border-red-500/40' },
+        { label: 'GitHub', link: 'https://github.com/rakib1808', icon: FaGithub, color: 'hover:text-red-600 hover:border-red-500/40' },
+        
+        { label: 'FaDiscord', link: 'https://discord.com/users/1273352746925424786', icon: FaDiscord, color: 'hover:text-red-600 hover:border-red-500/40' },
+
+        { label: 'Facebook', link: 'https://www.facebook.com/rakib1808', icon: FaFacebook, color: 'hover:text-red-600 hover:border-red-500/40' },
+,
+
+        { label: 'LinkedIn', link: 'https://www.linkedin.com/in/rakib1808/', icon: FaLinkedin },
+
     ];
 
     return (

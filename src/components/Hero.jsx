@@ -5,12 +5,6 @@ import cv from '../assets/Rakib_Hasan_Dev_CV.pdf'
 import { Download as DownloadIcon , Mail } from 'lucide-react'
 
 const Hero = () => {
-    const socialIcons = [
-        { icon: FaInstagram, alt: 'Instagram', link: '#' },
-        { icon: FaTiktok, alt: 'TikTok', link: '#' },
-        { icon: FaGithub, alt: 'GitHub', link: '#' },
-        { icon: FaYoutube, alt: 'YouTube', link: '#' },
-    ]
 
     return (
         <section id='home' className='min-h-screen flex items-center relative overflow-hidden'>
@@ -82,11 +76,12 @@ const Hero = () => {
                                 </button>
                             </a>
 
-                            <a href="#Contact" className='w-full sm:w-auto'>
-                                <button className='w-full sm:w-auto inline-flex item-center justify-center gap-2 px-8 py-3 rounded-full border-2 dark:border-red-600 border-red-600 dark:text-white text-gray-800 font-semibold dark:hover:bg-red-700 hover:bg-red-700 hover:shadow-[0_0_40px_rgba(220,38,38,0.9)] dark:hover:shadow-[0_0_40px_rgba(220,38,38,0.3)] transition-all duration-300 transform hover:scale-105 cursor-pointer hover:text-white'>
-                                    <Mail size={18} />
-                                    Hire Me
-                                </button>
+                            <a
+                                href="#contact"
+                                className='w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3 rounded-full border-2 border-red-600 dark:text-white text-gray-800 font-semibold hover:bg-red-700 hover:text-white hover:shadow-[0_0_40px_rgba(220,38,38,0.9)] dark:hover:shadow-[0_0_40px_rgba(220,38,38,0.3)] transition-all duration-300 transform hover:scale-105 cursor-pointer'
+                            >
+                                <Mail size={18} />
+                                Hire Me
                             </a>
 
                         </div>
