@@ -234,7 +234,6 @@ const Contact = () => {
             </motion.div>
           </form>
 
-          {/* ছবি: ফোনে ১ম (টাইটেলের নিচে), বড় স্ক্রিনে ২য় (ডানে) */}
           <motion.div
             className='order-1 lg:order-2 flex justify-center'
             initial={{ opacity: 0, x: 40 }}
@@ -242,7 +241,7 @@ const Contact = () => {
             viewport={{ once: false, amount: 0.2 }}
             transition={{ duration: 1, ease, delay: 0.15 }}
           >
-            <div className='relative w-full max-w-[220px] sm:max-w-sm lg:max-w-md'>
+            <div className='relative w-full max-w-55 sm:max-w-sm lg:max-w-md'>
               <div className='absolute inset-0 bg-linear-to-r from-red-600 to-red-800 rounded-full blur-2xl opacity-30 transform-gpu' />
               <img
                 src={contactImg}
@@ -255,11 +254,10 @@ const Contact = () => {
         </div>
       </div>
 
-      {/* সফল হলে পপআপ কার্ড */}
       <AnimatePresence>
         {showPopup && (
           <motion.div
-            className='fixed inset-0 z-[100] flex items-center justify-center px-4 bg-black/60 backdrop-blur-sm'
+            className='fixed inset-0 z-100 flex items-center justify-center px-4 bg-black/60 backdrop-blur-sm'
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}

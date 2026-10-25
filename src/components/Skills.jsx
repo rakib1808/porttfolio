@@ -78,11 +78,11 @@ const SkillCircle = ({ skill, index, isVisible }) => {
 const Skills = () => {
     const skills = [
         { name: 'HTML', percentage: 90, color: '#E34F26' },
-        { name: 'CSS', percentage: 90, color: '#1572B6' },
-        { name: 'JavaScript', percentage: 80, color: '#F7DF1E' },
-        { name: 'React', percentage: 70, color: '#61DAFB' },
+        { name: 'CSS', percentage: 80, color: '#1572B6' },
+        { name: 'JavaScript', percentage: 55, color: '#F7DF1E' },
+        { name: 'React', percentage: 40, color: '#61DAFB' },
         { name: 'Tailwind CSS', percentage: 85, color: '#61DAFB' },
-        { name: 'Git & GitHub', percentage: 75, color: '#8A2E2B' },
+        { name: 'Git & GitHub', percentage: 30, color: '#8A2E2B' },
     ];
 
     const sectionRef = useRef(null);
@@ -114,11 +114,11 @@ const Skills = () => {
                     <div className='inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-red-500/10 border border-red-500/20 mb-5' >
                         <span className='w-2 h-2 rounded-full bg-red-600 animate-pulse' />
                         <span className='text-xs sm:text-sm font-semibold tracking-wider uppercase dark:text-red-300 text-gray-700'>
-                            Expertise
+                            Tech Stack
                         </span>
                     </div>
                     <h2 className='text-3xl sm:text-4xl lg:text-5xl font-bold mb-5 dark:text-white text-gray-900 leading-tight'>
-                        My <span className='dark:text-red-300 text-red-600'>Skills</span>
+                        My <span className='dark:text-red-300 text-red-600'>Technical Proficiencies</span>
                     </h2>
                     <p className='text-base lg:text-lg max-w-xl mx-auto dark:text-gray-300 text-gray-700 leading-relaxed'>
                         I have a strong foundation in frontend development and continuously strive to enhance my skills. Here are some of the technologies I excel in:
