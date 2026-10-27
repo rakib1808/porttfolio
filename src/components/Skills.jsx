@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 
-const SkillCircle = ({ skill, index, isVisible }) => {
+const SkillCircle = ({ skill, index, mode }) => {
     const [count, setCount] = useState(0);
 
     const size = 150;
@@ -9,11 +9,19 @@ const SkillCircle = ({ skill, index, isVisible }) => {
     const offset = circumference - (count / 100) * circumference;
 
     useEffect(() => {
-        if (!isVisible) {
+        // রিসেট: পরের বার উপর থেকে এলে আবার ০ থেকে শুরুর জন্য
+        if (mode === 'idle') {
             setCount(0);
             return;
         }
 
+        // নিচ থেকে উঠে এলে: অ্যানিমেশন ছাড়াই পূর্ণ মান
+        if (mode === 'full') {
+            setCount(skill.percentage);
+            return;
+        }
+
+        // উপর থেকে নামলে: ০ থেকে লোড
         const duration = 1000;
         const delay = index * 100;
         let frameId;
@@ -28,6 +36,7 @@ const SkillCircle = ({ skill, index, isVisible }) => {
             }
         };
 
+        setCount(0);
         const timeoutId = setTimeout(() => {
             frameId = requestAnimationFrame(animate);
         }, delay);
@@ -36,10 +45,10 @@ const SkillCircle = ({ skill, index, isVisible }) => {
             clearTimeout(timeoutId);
             cancelAnimationFrame(frameId);
         };
-    }, [isVisible, skill.percentage, index]);
+    }, [mode, skill.percentage, index]);
 
     return (
-        <div className='flex flex-col items-center' data-aos='fade-up' data-aos-delay={index * 150}>
+        <div className='flex flex-col items-center' data-aos='fade-up' data-aos-delay={index * 100}>
             <div className='relative w-36 h-36 sm:w-40 sm:h-40 lg:w-32 lg:h-32'>
                 <svg className='w-full h-full -rotate-90' viewBox={`0 0 ${size} ${size}`}>
                     <circle
@@ -86,11 +95,27 @@ const Skills = () => {
     ];
 
     const sectionRef = useRef(null);
-    const [isVisible, setIsVisible] = useState(false);
+    const [mode, setMode] = useState('idle'); // 'idle' | 'animate' | 'full'
 
     useEffect(() => {
         const observer = new IntersectionObserver(
-            ([entry]) => setIsVisible(entry.isIntersecting),
+            ([entry]) => {
+                const top = entry.boundingClientRect.top;
+
+                if (entry.isIntersecting) {
+                    if (top > 0) {
+                        // নিচ দিক থেকে ঢুকেছে (আপনি নামছেন): ০ থেকে লোড
+                        setMode('animate');
+                    } else {
+                        // উপর দিক থেকে ঢুকেছে (আপনি উঠছেন): পূর্ণ মান, লোড নেই
+                        setMode('full');
+                    }
+                } else if (top < 0) {
+                    // উপর দিক দিয়ে বেরিয়েছে (আপনি নিচে নেমে গেছেন): রিসেট
+                    setMode('idle');
+                }
+                // নিচ দিক দিয়ে বেরোলে (আপনি উপরে উঠে গেছেন): কিছুই বদলাবে না
+            },
             { threshold: 0.3 }
         );
 
@@ -110,8 +135,8 @@ const Skills = () => {
             </div>
 
             <div className='max-w-6xl mx-auto w-full relative z-10'>
-                <div className='text-center mb-10 lg:mb-16' data-aos='fade-right'>
-                    <div className='inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-red-500/10 border border-red-500/20 mb-5' >
+                <div className='text-center mb-10 lg:mb-16' data-aos='fade-up'>
+                    <div className='inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-red-500/10 border border-red-500/20 mb-5'>
                         <span className='w-2 h-2 rounded-full bg-red-600 animate-pulse' />
                         <span className='text-xs sm:text-sm font-semibold tracking-wider uppercase dark:text-red-300 text-gray-700'>
                             Tech Stack
@@ -131,7 +156,7 @@ const Skills = () => {
                             key={skill.name}
                             skill={skill}
                             index={index}
-                            isVisible={isVisible}
+                            mode={mode}
                         />
                     ))}
                 </div>

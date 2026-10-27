@@ -5,18 +5,6 @@ import contactImg from '../assets/Contact.png'
 
 const ease = [0.22, 1, 0.36, 1]
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease } },
-}
-
-const fieldProps = (delay = 0) => ({
-  initial: { opacity: 0, y: 50 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: false, amount: 0.6 },
-  transition: { duration: 0.8, ease, delay },
-})
-
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
 
 const validate = (values) => {
@@ -31,7 +19,6 @@ const validate = (values) => {
   if (!email) errors.email = 'email is required'
   else if (!emailRegex.test(email)) errors.email = 'Please enter a valid email address'
 
-
   return errors
 }
 
@@ -43,7 +30,7 @@ const Contact = () => {
   const [showPopup, setShowPopup] = useState(false)
   const [botcheck, setBotcheck] = useState(false)
 
-  // পপআপ: ৫ সেকেন্ডে অটো বন্ধ + Esc দিয়ে বন্ধ
+  // Popup auto off after 5 sec
   useEffect(() => {
     if (!showPopup) return
 
@@ -134,19 +121,16 @@ const Contact = () => {
     >
       <div className='max-w-6xl mx-auto w-full relative z-10'>
 
-        <motion.h2
+        <h2
+          data-aos='fade-up'
           className='text-3xl sm:text-4xl lg:text-5xl font-bold text-center mb-6 lg:mb-10 dark:text-white text-gray-900'
-          variants={fadeUp}
-          initial='hidden'
-          whileInView='visible'
-          viewport={{ once: false, amount: 0.3 }}
         >
           Get In <span className='dark:text-red-400 text-red-600'>Touch</span>
-        </motion.h2>
+        </h2>
 
         <div className='grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-16 items-center'>
 
-          {/* ফর্ম: প্রতিটা ফিল্ড নিজে নিজে ভেসে আসবে */}
+          {/* ফর্ম: প্রতিটা ফিল্ড AOS দিয়ে আলাদাভাবে ভেসে আসবে */}
           <form
             onSubmit={handleSubmit}
             noValidate
@@ -162,7 +146,7 @@ const Contact = () => {
               autoComplete='off'
             />
 
-            <motion.div {...fieldProps(0)}>
+            <div data-aos='fade-up' data-aos-delay='0'>
               <input
                 type='text'
                 name='name'
@@ -177,9 +161,9 @@ const Contact = () => {
               {touched.name && errors.name && (
                 <p className='mt-1.5 ml-1 text-sm text-red-500'>{errors.name}</p>
               )}
-            </motion.div>
+            </div>
 
-            <motion.div {...fieldProps(0.1)}>
+            <div data-aos='fade-up' data-aos-delay='100'>
               <input
                 type='email'
                 name='email'
@@ -193,9 +177,9 @@ const Contact = () => {
               {touched.email && errors.email && (
                 <p className='mt-1.5 ml-1 text-sm text-red-500'>{errors.email}</p>
               )}
-            </motion.div>
+            </div>
 
-            <motion.div {...fieldProps(0.2)}>
+            <div data-aos='fade-up' data-aos-delay='200'>
               <textarea
                 name='message'
                 placeholder='Message'
@@ -214,9 +198,9 @@ const Contact = () => {
                   {values.message.length}/1000
                 </span>
               </div>
-            </motion.div>
+            </div>
 
-            <motion.div {...fieldProps(0.3)}>
+            <div data-aos='fade-up' data-aos-delay='300'>
               <button
                 type='submit'
                 disabled={status === 'sending'}
@@ -231,15 +215,14 @@ const Contact = () => {
                   <AlertCircle size={18} /> Something went wrong. Please try again later.
                 </p>
               )}
-            </motion.div>
+            </div>
           </form>
 
-          <motion.div
+          {/* ছবি */}
+          <div
             className='order-1 lg:order-2 flex justify-center'
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: false, amount: 0.2 }}
-            transition={{ duration: 1, ease, delay: 0.15 }}
+            data-aos='fade-left'
+            data-aos-delay='150'
           >
             <div className='relative w-full max-w-55 sm:max-w-sm lg:max-w-md'>
               <div className='absolute inset-0 bg-linear-to-r from-red-600 to-red-800 rounded-full blur-2xl opacity-30 transform-gpu' />
@@ -249,11 +232,12 @@ const Contact = () => {
                 className='relative z-10 w-full h-auto max-h-[40vh] lg:max-h-[60vh] object-contain'
               />
             </div>
-          </motion.div>
+          </div>
 
         </div>
       </div>
 
+      {/* সফল হলে পপআপ (এটা স্ক্রল অ্যানিমেশন নয়, তাই Framer Motion-ই থাকছে) */}
       <AnimatePresence>
         {showPopup && (
           <motion.div
