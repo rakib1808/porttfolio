@@ -52,12 +52,25 @@ const About = () => {
                     </div>
 
                     <a
-                        href='#contact'
-                        data-aos='fade-up'
-                        data-aos-delay='100'
-                        className='group inline-flex items-center justify-center gap-2 px-8 py-3 rounded-full text-white font-semibold bg-linear-to-r from-red-600 to-red-800 hover:shadow-[0_0_40px_rgba(220,38,38,0.9)] dark:hover:shadow-[0_0_40px_rgba(220,38,38,0.3)] transition-all duration-300 transform hover:scale-105 cursor-pointer'>
-                        Let's Talk
-                        <ArrowRight size={18} />
+                        href="#contact"
+                        data-aos="fade-up"
+                        data-aos-delay="100"
+                        className="group relative overflow-hidden inline-flex items-center justify-center px-8 py-3 rounded-full border-2 border-red-600 text-white hover:text-gray-800 dark:hover:text-white font-semibold hover:shadow-[0_0_40px_rgba(220,38,38,0.9)] dark:hover:shadow-[0_0_40px_rgba(220,38,38,0.3)] transition-all duration-300 cursor-pointer"
+                        >
+                        <span className="pointer-events-none absolute inset-x-0 bottom-0 h-[82%] bg-red-700 translate-y-0 transition-transform duration-1000 ease-out group-hover:translate-y-[130%]">
+                            <svg
+                            className="animate-water-wave absolute -top-3 left-0 w-[200%] h-5 text-red-700 fill-current"
+                            viewBox="0 0 1200 120"
+                            preserveAspectRatio="none"
+                            >
+                            <path d="M0,60 C150,0 350,120 600,60 C850,0 1050,120 1200,60 L1200,120 L0,120 Z" />
+                            </svg>
+                        </span>
+
+                        <span className="relative z-10 inline-flex items-center gap-2 transition-colors duration-300">
+                            Let's Talk
+                            <ArrowRight size={18} />
+                        </span>
                     </a>
                 </div>
 

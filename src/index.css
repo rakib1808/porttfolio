@@ -8,3 +8,20 @@ body {
 .dark {
   color-scheme: dark;
 }
+
+
+@keyframes waterWave {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-water-wave {
+  animation: waterWave 2.5s linear infinite;
+  animation-delay: 0s;
+  will-change: transform;
+}
+

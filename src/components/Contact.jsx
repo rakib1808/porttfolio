@@ -202,13 +202,27 @@ const Contact = () => {
 
             <div data-aos='fade-up' data-aos-delay='300'>
               <button
-                type='submit'
-                disabled={status === 'sending'}
-                className='inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl text-white font-semibold bg-linear-to-r from-red-600 to-red-800 hover:shadow-[0_0_30px_rgba(220,38,38,0.6)] transition-shadow duration-300 disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer'
+                type="submit"
+                disabled={status === "sending"}
+                className="group relative overflow-hidden inline-flex items-center justify-center px-6 py-2.5 rounded-xl border-2 border-red-600 text-white hover:text-gray-800 dark:hover:text-white font-semibold hover:shadow-[0_0_30px_rgba(220,38,38,0.6)] transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
               >
-                <Send size={18} />
-                {status === 'sending' ? 'Sending...' : 'Send Message'}
+
+                <span className="pointer-events-none absolute inset-x-0 bottom-0 h-[82%] bg-red-700 translate-y-0 transition-transform duration-1000 ease-out group-hover:translate-y-[130%] group-disabled:translate-y-0">
+                  <svg
+                    className="animate-water-wave absolute -top-3 left-0 w-[200%] h-5 text-red-700 fill-current"
+                    viewBox="0 0 1200 120"
+                    preserveAspectRatio="none"
+                  >
+                    <path d="M0,60 C150,0 350,120 600,60 C850,0 1050,120 1200,60 L1200,120 L0,120 Z" />
+                  </svg>
+                </span>
+
+                <span className="relative z-10 inline-flex items-center gap-2 transition-colors duration-300">
+                  <Send size={18} />
+                  {status === "sending" ? "Sending..." : "Send Message"}
+                </span>
               </button>
+
 
               {status === 'error' && (
                 <p className='mt-3 flex items-center gap-2 text-sm text-red-500'>
@@ -218,7 +232,6 @@ const Contact = () => {
             </div>
           </form>
 
-          {/* ছবি */}
           <div
             className='order-1 lg:order-2 flex justify-center'
             data-aos='fade-left'
@@ -237,7 +250,6 @@ const Contact = () => {
         </div>
       </div>
 
-      {/* সফল হলে পপআপ (এটা স্ক্রল অ্যানিমেশন নয়, তাই Framer Motion-ই থাকছে) */}
       <AnimatePresence>
         {showPopup && (
           <motion.div
