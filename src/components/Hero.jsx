@@ -34,7 +34,7 @@ const Hero = () => {
 
                         <div className='inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-red-500/10 border border-red-500/20 mb-5'>
 
-                            <span className=' w-2 h-2 rounded-full bg-green-500 animate-pulse'/>
+                            <span className=' w-2 h-2 rounded-full bg-green-400 animate-pulse'/>
                             <span className='text-sm font-medium dark:text-red-300 text-gray-700'>
                                 Available for work
                             </span>
